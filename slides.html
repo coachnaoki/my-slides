@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>スライドプレゼンテーション</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<script>
+// =============================================================
+// ★ ここを編集してスライドを作成してください ★
+// =============================================================
+//
+// テンプレート一覧:
+//   "title"        … タイトルスライド（ダーク背景・アイコン・大タイトル）
+//   "three-cards"  … 3カラムカード（コンセプト名・アイコン付き3枚）
+//   "three-tactics"… 3戦術カード（前衛/後衛/劣勢など・3番目はダーク反転可）
+//   "two-columns"  … 2カラム比較（左右対比・バッジ付き）
+//   "steps"        … 縦ステップ（CASE1/2/MINDSET形式・3行）
+//   "big-message"  … 大メッセージ＋ダーク情報パネル
+//   "closing"      … クロージング（ダーク背景・3サマリーカード）
+//
+// =============================================================
+
+const SLIDE_SCRIPT = [
+
+  // ---- スライド 1 ----
+  {
+    type: "title",
+    icon: "fa-baseball-ball",       // FontAwesome アイコン名
+    title: "ダブルスを支配する",     // メインタイトル（改行は \n）
+    titleSuffix: "25の鉄則",        // タイトル末尾（マーカーなし）
+    titleHighlight: "支配する",     // この文字列の下にマーカー
+    subtitle: "センターを制し、ペアで勝つ"
+  },
+
+  // ---- スライド 2 ----
+  {
+    type: "three-cards",
+    concept: "コンセプト1",
+    title: "センターウィンドウを制覇せよ！",
+    titleHighlight: "センターウィンドウ",  // この文字列に黄緑bg
+    cards: [
+      {
+        icon: "fa-expand",
+        title: "見えない窓",
+        lines: [
+          "幅 <span class='text-5xl dark-black-text'>2.7m</span>",
+          "<span class='text-2xl'>×</span>",
+          "高さ <span class='text-5xl dark-black-text'>91cm</span>"
+        ]
+      },
+      {
+        icon: "fa-hourglass-half",
+        title: "砂時計の形",
+        lines: [
+          "コートの",
+          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>ド真ん中</span>が",
+          "一番重要！"
+        ]
+      },
+      {
+        icon: "fa-exchange-alt",
+        title: "交通量No.1",
+        lines: [
+          "すべての",
+          "ショットが",
+          "<span class='text-4xl dark-black-text'>ここを通る！</span>"
+        ]
+      }
+    ]
+  },
+
+  // ---- スライド 3 ----
+  {
+    type: "three-tactics",
+    concept: "コンセプト1",
+    title: "どう支配するか？",
+    titleHighlight: "支配",          // マーカーを引くテキスト
+    catchphrase: "攻めはセンターへ。守りは変化を。",
+    cards: [
+      { role: "前衛",      icon: "fa-bolt",   dark: false, main: "積極的に\nポーチ！",  sub: "ここで捕らえる" },
+      { role: "後衛",      icon: "fa-meteor", dark: false, main: "低く\n叩き込め！",  sub: "攻撃的なボール" },
+      { role: "支配されたら", icon: "fa-random", dark: true,  main: "意識を\n散らせ！", sub: "ストレート・ロブ\nショートクロス" }
+    ]
+  },
+
+  // ---- スライド 4 ----
+  {
+    type: "three-cards",
+    concept: "コンセプト2",
+    title: "ポジショニングの基本",
+    titleHighlight: "ポジショニング",
+    cards: [
+      {
+        icon: "fa-map-marker-alt",
+        title: "基本原則",
+        lines: [
+          "試合は",
+          "<span class='text-5xl dark-black-text border-b-8' style='border-color:#CCFF00'>立つ場所</span>で",
+          "決まる！"
+        ]
+      },
+      {
+        icon: "fa-running",
+        title: "サーバー",
+        lines: [
+          "少し",
+          "<span class='text-5xl dark-black-text'>外側へ</span>",
+          "<span class='text-xl text-gray-500'>パートナーの守備範囲を考慮</span>"
+        ]
+      },
+      {
+        icon: "fa-crosshairs",
+        title: "パートナー",
+        lines: [
+          "サービスBOXの",
+          "<span class='text-5xl dark-black-text'>ど真ん中</span>",
+          "<span class='text-xl text-gray-500'>アレーとセンターの両取り</span>"
+        ]
+      }
+    ]
+  },
+
+  // ---- スライド 5 ----
+  {
+    type: "three-cards",
+    concept: "コンセプト2",
+    title: "ラリー中の連動",
+    titleHighlight: "ラリー中",
+    cards: [
+      {
+        icon: "fa-link",
+        title: "輪ゴムの法則",
+        lines: [
+          "二人は見えない",
+          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>輪ゴム</span>で",
+          "繋がっている！"
+        ]
+      },
+      {
+        icon: "fa-map-marker-alt",
+        title: "追い出されたら",
+        lines: [
+          "空いた",
+          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>スペース</span>を",
+          "カバーする"
+        ]
+      },
+      {
+        icon: "fa-arrows-alt",
+        title: "常に場所を把握",
+        lines: [
+          "雁行陣だけでなく",
+          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>平行陣でも</span>",
+          "一緒に動く！"
+        ]
+      }
+    ]
+  },
+
+  // ---- スライド 6 ----
+  {
+    type: "two-columns",
+    concept: "コンセプト3",
+    title: "「コートの線」は忘れよう",
+    titleHighlight: "忘れよう",
+    catchphrase: "「左右」ではなく「前後」！",
+    columns: [
+      {
+        badge: "前衛",
+        badgeColor: "green",   // "green" | "dark" | "white"
+        borderColor: "green",  // "green" | "dark"
+        icon: "fa-hand-rock",
+        main: "ネット前\n全支配",
+        dividerColor: "green",
+        sub: "パートナーの前の\nボールも奪う！",
+        subColor: "gray"       // "gray" | "dark"
+      },
+      {
+        badge: "後衛",
+        badgeColor: "white",
+        borderColor: "dark",
+        icon: "fa-map-marked-alt",
+        main: "コート後方\n広くカバー",
+        dividerColor: "dark",
+        sub: "前衛が決めるための\nお膳立て！",
+        subColor: "gray"
+      }
+    ]
+  },
+
+  // ---- スライド 7 ----
+  {
+    type: "steps",
+    title: "ロブの処理と優先順位",
+    titleUnderline: "前衛が最優先",
+    catchphrase: "前衛の動きを歓迎せよ",
+    steps: [
+      {
+        label: "CASE 1: 浅いロブ",
+        icon: "fa-hand-paper",
+        style: "green",   // "green"=黄緑枠・通常 | "gray"=グレー・dim | "highlight"=黄緑bg
+        content: "<span class='px-2 mr-2 font-black' style='background:#CCFF00'>前衛</span>が処理！",
+        num: "01"
+      },
+      {
+        label: "CASE 2: 深いロブ",
+        icon: "fa-running",
+        style: "gray",
+        content: "<span class='border-b-4 border-gray-300'>後衛</span>がカバー",
+        num: "02"
+      },
+      {
+        label: "MINDSET",
+        icon: "fa-gavel",
+        style: "highlight",
+        content: "前衛が触る ＝ <span class='px-2' style='background:#121212;color:#CCFF00'>攻撃</span>",
+        num: "03"
+      }
+    ]
+  },
+
+  // ---- スライド 8 ----
+  {
+    type: "big-message",
+    label: "READ THE BODY",
+    title: "ボールではなく「相手の体勢」を見よ",
+    titleUnderline: "「相手の体勢」",
+    icon: "fa-eye",
+    badgeIcon: "fa-certificate",
+    message: "ボールの行方は、\n相手の<span class='px-4 mx-2 inline-block transform -rotate-2 shadow-sm' style='background:#CCFF00'>「体」</span>に書いてある。",
+    panel: {
+      items: [
+        { icon: "fa-balance-scale",    label: "バランス" },
+        { icon: "fa-arrows-alt-h",     label: "ボールとの距離" },
+        { icon: "fa-drafting-compass", label: "ラケット角度" }
+      ],
+      conclusion: { icon: "fa-ban", prefix: "ボールを追うな。", main: "相手を読め！" }
+    }
+  },
+
+  // ---- スライド 9 ----
+  {
+    type: "two-columns",
+    concept: "コンセプト4",
+    title: "二つの判断基準",
+    titleHighlight: "判断基準",
+    catchphrase: "相手が「楽」か「苦」か？",
+    columns: [
+      {
+        badge: "楽な体勢",
+        badgeColor: "white",
+        borderColor: "green",
+        icon: "fa-couch",
+        main: "動かずに\n待て！",
+        dividerColor: "green",
+        sub: "コースが絞れない",
+        subColor: "gray"
+      },
+      {
+        badge: "苦しい体勢",
+        badgeColor: "white",
+        borderColor: "dark",
+        icon: "fa-bullseye",
+        main: "センターで\n待ち伏せ！",
+        dividerColor: "dark",
+        sub: "相手は真ん中にしか\n打てない！",
+        subColor: "dark"
+      }
+    ]
+  },
+
+  // ---- スライド 10 ----
+  {
+    type: "big-message",
+    label: "DON'T CHANGE DIRECTION",
+    title: "方向を変えるな！",
+    titleUnderline: "変えるな！",
+    icon: "fa-arrows-alt-h",
+    badgeIcon: "fa-times",
+    badgeIconColor: "red",   // "green" | "red"
+    message: "むやみに\n<span class='px-4 mx-2 inline-block shadow-sm' style='background:#CCFF00'>クロスからストレート</span>\nに打たない。",
+    panel: {
+      items: [
+        { icon: "fa-exclamation-triangle", label: "大穴が空く",  sub: "自分たちのコートが危険に" },
+        { icon: "fa-angle-double-right",   label: "相手有利",   sub: "角度をつけさせてしまう" }
+      ],
+      conclusion: { icon: "fa-shield-alt", prefix: "基本はクロス！", main: "リスクを冒すな！" },
+      itemCols: 2   // 2 or 3
+    }
+  },
+
+  // ---- スライド 11 ----
+  {
+    type: "two-columns",
+    concept: "コンセプト5",
+    title: "鉄則 と 例外",
+    titleHighlight: "例外",
+    catchphrase: "基本はクロスラリー",
+    columns: [
+      {
+        badge: "鉄則",
+        badgeColor: "green",
+        borderColor: "green",
+        icon: "fa-exchange-alt",
+        iconStyle: "rotate-45",
+        main: "基本は\nクロス",
+        dividerColor: "green",
+        sub: "意図的な戦略以外は\nクロスを続けろ",
+        subColor: "gray"
+      },
+      {
+        badge: "例外",
+        badgeColor: "dark",
+        borderColor: "dark",
+        icon: "fa-bolt",
+        main: "変えるのは\n圧倒的有利な時",
+        mainSize: "text-5xl",  // オプション: デフォルトは text-6xl
+        dividerColor: "dark",
+        sub: "仕留められる時だけ\nストレートへ",
+        subColor: "gray"
+      }
+    ]
+  },
+
+  // ---- スライド 12 ----
+  {
+    type: "big-message",
+    label: "IGNORE THE ALLEY",
+    title: "アレーは捨てろ！",
+    titleUnderline: "捨てろ！",
+    icon: "fa-ban",
+    badgeIcon: "fa-running",
+    message: "ストレートを抜かれることを\n<span class='px-4 mx-2 inline-block transform -rotate-2 shadow-sm' style='background:#CCFF00'>恐れるな。</span>",
+    panel: {
+      items: [
+        { icon: "fa-dice",      label: "確率のゲーム" },
+        { icon: "fa-chart-pie", label: "10回中2回" },
+        { icon: "fa-door-open", label: "センター危機" }
+      ],
+      conclusion: { icon: "fa-exclamation-triangle", prefix: "アレーを守ると...", main: "センターが空く！" }
+    }
+  },
+
+  // ---- スライド 13 ----
+  {
+    type: "closing",
+    icon: "fa-trophy",
+    title: "センターを制し、\nペアで勝つ",
+    cards: [
+      { title: "センター支配", desc: "全ショットの通り道を押さえる" },
+      { title: "ペアの連動",   desc: "輪ゴムで繋がった動きを意識" },
+      { title: "基本はクロス", desc: "確率のゲームで有利を保つ" }
+    ]
+  }
+
+];
+// =============================================================
+// ★ 台本ここまで ★
+// =============================================================
+
+
+
+// =============================================================
+// テンプレートエンジン（編集不要）
+// =============================================================
+
+const G = '#CCFF00';
+const D = '#121212';
+
+function hl(text, keyword) {
+  if (!keyword) return text;
+  return text.replace(keyword,
+    `<span style="background:${G};padding:0 6px;">${keyword}</span>`);
+}
+
+function renderTitle(s) {
+  return `
+  <div class="slide-container">
+    <div class="absolute top-0 left-0 w-full h-5" style="background:${G}"></div>
+    <div class="absolute bottom-0 left-0 w-full h-5" style="background:${D}"></div>
+    <div class="flex-1 flex flex-col justify-center items-center px-16 z-10 text-center">
+      <div class="mb-10 rounded-full w-32 h-32 flex items-center justify-center shadow-2xl" style="background:${D}">
+        <i class="fas ${s.icon} text-6xl" style="color:${G}"></i>
+      </div>
+      <h1 class="text-7xl font-black leading-tight mb-2 tracking-wide" style="color:${D}">
+        ${s.title.replace(/\n/g,'<br>')}
+      </h1>
+      ${s.titleSuffix ? `<h1 class="text-7xl font-black leading-tight mb-8 tracking-wide" style="color:${D}">
+        <span style="position:relative;z-index:1">${s.titleHighlight||''}<span style="position:absolute;bottom:5px;left:-5px;right:-5px;height:35%;background:${G};z-index:-1;transform:rotate(-1deg);display:block"></span></span>
+        ${s.titleSuffix}
+      </h1>` : ''}
+      ${s.subtitle ? `<div class="px-10 py-6 rounded-xl border-l-8" style="background:#f0f0f0;border-color:${G}">
+        <p class="text-4xl font-bold text-center" style="color:${D}">${s.subtitle}</p>
+      </div>` : ''}
+      <div class="absolute right-10 bottom-20 opacity-10">
+        <i class="fas fa-trophy text-9xl" style="color:${D}"></i>
+      </div>
+      <div class="absolute left-10 top-20 opacity-10">
+        <i class="fas fa-users text-9xl" style="color:${D}"></i>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderThreeCards(s) {
+  const cards = s.cards.map(c => `
+    <div class="bg-gray-50 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-sm" style="border-left:12px solid ${G}">
+      <div class="mb-6 rounded-full w-24 h-24 flex items-center justify-center" style="background:${G}">
+        <i class="fas ${c.icon} text-5xl" style="color:${D}"></i>
+      </div>
+      <h2 class="text-4xl font-black mb-4" style="color:${D}">${c.title}</h2>
+      <div class="text-3xl font-bold text-gray-700 leading-snug">
+        ${c.lines.map(l=>`<p>${l}</p>`).join('')}
+      </div>
+    </div>`).join('');
+
+  return `
+  <div class="slide-container">
+    <div class="absolute top-0 left-0 w-full h-4" style="background:${G}"></div>
+    <div class="absolute bottom-0 left-0 w-full h-4" style="background:${D}"></div>
+    <div class="flex-1 flex flex-col px-12 pt-12 pb-10">
+      <div class="mb-10 border-b-4 border-gray-200 pb-4">
+        <h1 class="text-7xl font-black tracking-tight" style="color:${D}">${hl(s.title, s.titleHighlight)}</h1>
+      </div>
+      <div class="flex-1 grid grid-cols-3 gap-8 items-stretch">${cards}</div>
+    </div>
+  </div>`;
+}
+
+function renderThreeTactics(s) {
+  const cards = s.cards.map(c => {
+    const bg = c.dark ? D : '#f9fafb';
+    const border = `border-top: 12px solid ${c.dark ? G : D}`;
+    const textCol = c.dark ? G : D;
+    const subCol = c.dark ? '#9ca3af' : '#4b5563';
+    const badgeBg = c.dark ? 'transparent' : G;
+    const badgeBorder = c.dark ? `border:2px solid ${G}` : '';
+    const badgeText = c.dark ? G : D;
+    return `
+    <div class="rounded-2xl p-6 flex flex-col items-center justify-between text-center h-full"
+         style="background:${bg};${border};box-shadow:0 4px 6px rgba(0,0,0,.1)">
+      <div class="w-full flex flex-col items-center">
+        <div class="px-6 py-2 rounded-full text-2xl font-black mb-6 transform -translate-y-2 shadow-sm"
+             style="background:${badgeBg};${badgeBorder};color:${badgeText}">${c.role}</div>
+        <i class="fas ${c.icon} text-7xl mb-4" style="color:${textCol}"></i>
+      </div>
+      <div class="flex-1 flex flex-col justify-center w-full">
+        <p class="text-5xl font-black leading-tight mb-3" style="color:${textCol}">${c.main.replace(/\n/g,'<br>')}</p>
+        <div class="w-16 h-2 mx-auto rounded-full my-2" style="background:${c.dark?'#333':'#e5e7eb'}"></div>
+        <p class="text-2xl font-bold" style="color:${subCol}">${c.sub.replace(/\n/g,'<br>')}</p>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="slide-container">
+    <div class="absolute top-0 left-0 w-full h-4" style="background:${G}"></div>
+    <div class="absolute bottom-0 left-0 w-full h-4" style="background:${D}"></div>
+    <div class="flex-1 flex flex-col px-12 pt-10 pb-10">
+      <div class="flex justify-between items-end mb-8 pb-2 border-b-4 border-gray-100">
+        <div>
+          <h1 class="text-7xl font-black tracking-tight" style="color:${D}">
+            ${s.titleHighlight
+              ? s.title.replace(s.titleHighlight,
+                  `<span style="background:linear-gradient(180deg,transparent 65%,${G} 65%);display:inline">${s.titleHighlight}</span>`)
+              : s.title}
+          </h1>
+        </div>
+        ${s.catchphrase ? `<div class="px-8 py-5 rounded-tr-2xl rounded-bl-2xl rounded-tl-lg rounded-br-lg transform -rotate-1 mb-2 shadow-lg" style="background:${G}">
+          <p class="text-3xl font-black tracking-wide" style="color:${D}">${s.catchphrase}</p>
+        </div>` : ''}
+      </div>
+      <div class="flex-1 grid grid-cols-3 gap-6 items-stretch">${cards}</div>
+    </div>
+  </div>`;
+}
+
+function renderTwoColumns(s) {
+  function colBadgeStyle(col) {
+    if (col.badgeColor === 'green') return `background:${G};color:${D}`;
+    if (col.badgeColor === 'dark')  return `background:${D};color:${G}`;
+    return `background:#fff;color:${D}`;
+  }
+  function colBorderStyle(col) {
+    if (col.borderColor === 'green') return `border-color:${G}`;
+    return `border-color:${D}`;
+  }
+  function dividerStyle(col) {
+    if (col.dividerColor === 'green') return `background:${G}`;
+    return `background:${D}`;
+  }
+  function subStyle(col) {
+    if (col.subColor === 'dark') return `color:${D}`;
+    return 'color:#4b5563';
+  }
+
+  const cols = s.columns.map(col => `
+    <div class="flex-1 bg-white border-4 rounded-3xl p-6 flex flex-col items-center relative card-shadow"
+         style="${colBorderStyle(col)}">
+      <div class="absolute -top-6 bg-white border-4 rounded-full shadow-md z-20 overflow-hidden"
+           style="${colBorderStyle(col)}">
+        <div class="px-10 py-3 text-4xl font-black" style="${colBadgeStyle(col)}">${col.badge}</div>
+      </div>
+      <div class="mt-10 flex-1 flex flex-col items-center justify-center text-center w-full">
+        <div class="mb-6" style="color:${D}">
+          <i class="fas ${col.icon} text-8xl ${col.iconStyle||''}"></i>
+        </div>
+        <p class="${col.mainSize||'text-6xl'} font-black mb-4 leading-tight w-full" style="color:${D}">
+          ${col.main.replace(/\n/g,'<br>')}
+        </p>
+        <div class="w-20 h-2 my-4 rounded-full" style="${dividerStyle(col)}"></div>
+        <p class="text-3xl font-bold leading-snug" style="${subStyle(col)}">${col.sub.replace(/\n/g,'<br>')}</p>
+      </div>
+    </div>`).join('');
+
+  return `
+  <div class="slide-container bg-split">
+    <div class="absolute top-0 left-0 w-full h-4 z-20" style="background:${G}"></div>
+    <div class="pt-10 px-12 pb-4 flex flex-col z-10 relative">
+      <div class="flex justify-between items-end">
+        <h1 class="text-6xl font-black tracking-tight leading-none">
+          ${s.titleHighlight
+            ? s.title.replace(s.titleHighlight,
+                `<span class="highlight-marker">${s.titleHighlight}</span>`)
+            : s.title}
+        </h1>
+        ${s.catchphrase ? `<div class="px-8 py-3 rounded-lg transform rotate-2 shadow-lg border-2 border-gray-900">
+          <p class="text-3xl font-black" style="color:${D}">${s.catchphrase}</p>
+        </div>` : ''}
+      </div>
+    </div>
+    <div class="flex-1 flex px-10 pb-10 gap-8 items-stretch mt-4 z-10 relative">${cols}</div>
+    <div class="absolute bottom-0 left-0 w-full h-4 z-20" style="background:${D}"></div>
+  </div>`;
+}
+
+function renderSteps(s) {
+  function stepStyle(step) {
+    if (step.style === 'green')     return { wrap:`background:#f9fafb;border-left:8px solid ${G}`, iconWrap:`background:#fff;border:4px solid ${G}`, iconColor:D, textColor:D, numColor:'#e5e7eb' };
+    if (step.style === 'gray')      return { wrap:`background:#fff;border-left:8px solid #d1d5db;opacity:.8`, iconWrap:`background:#f3f4f6;border:4px solid #d1d5db`, iconColor:'#9ca3af', textColor:'#6b7280', numColor:'#f3f4f6' };
+    if (step.style === 'highlight') return { wrap:`background:${G};border-left:8px solid ${D}`, iconWrap:`background:${D}`, iconColor:G, textColor:D, numColor:`${D}`, numOpacity:'opacity:.2' };
+    return {};
+  }
+
+  const steps = s.steps.map(step => {
+    const st = stepStyle(step);
+    return `
+    <div class="flex-1 rounded-2xl flex items-center px-8 shadow-sm relative z-10" style="${st.wrap}">
+      <div class="flex-shrink-0 w-24 h-24 rounded-full flex items-center justify-center mr-8" style="${st.iconWrap}">
+        <i class="fas ${step.icon} text-5xl" style="color:${st.iconColor}"></i>
+      </div>
+      <div class="flex-1">
+        <span class="text-2xl font-bold mr-4" style="color:${st.textColor};opacity:.7">${step.label}</span>
+        <p class="text-5xl font-black" style="color:${st.textColor}">${step.content}</p>
+      </div>
+      <div class="text-8xl font-black absolute right-6 top-1/2 transform -translate-y-1/2 -z-10 ${step.numOpacity||''}"
+           style="color:${st.numColor}">${step.num}</div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="slide-container">
+    <div class="absolute top-0 left-0 w-full h-4 z-20" style="background:${G}"></div>
+    <div class="pt-8 px-12 pb-2 flex justify-between items-end z-10">
+      <div>
+        ${s.label ? `<span class="text-gray-500 font-bold text-xl">${s.label}</span>` : ''}
+        <h1 class="text-6xl font-black tracking-tight leading-none" style="color:${D}">
+          <span class="border-b-8 inline-block pb-1" style="border-color:${G}">${s.titleUnderline}</span>！
+        </h1>
+      </div>
+      ${s.catchphrase ? `<div class="text-right pb-2">
+        <p class="text-3xl font-bold text-gray-400">${s.catchphrase}</p>
+      </div>` : ''}
+    </div>
+    <div class="flex-1 flex flex-col px-12 pb-10 pt-4 gap-4 justify-center">${steps}</div>
+    <div class="absolute bottom-0 left-0 w-full h-3 z-20" style="background:${D}"></div>
+  </div>`;
+}
+
+function renderBigMessage(s) {
+  const p = s.panel;
+  const itemCols = p.itemCols || 3;
+  const badgeColor = s.badgeIconColor === 'red' ? '#ef4444' : G;
+  const items = p.items.map(it => `
+    <div class="flex ${itemCols===2?'items-center gap-4':'flex-col items-center text-center'}">
+      ${itemCols===2
+        ? `<div class="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center" style="background:${G}">
+             <i class="fas ${it.icon} text-3xl" style="color:${D}"></i>
+           </div>
+           <div class="text-left">
+             <p class="font-bold text-2xl mb-1" style="color:${G}">${it.label}</p>
+             ${it.sub ? `<p class="text-lg" style="color:${G}">${it.sub}</p>` : ''}
+           </div>`
+        : `<i class="fas ${it.icon} text-4xl mb-2" style="color:${G}"></i>
+           <p class="font-bold text-xl" style="color:${G}">${it.label}</p>`
+      }
+    </div>`).join('');
+
+  return `
+  <div class="slide-container">
+    <div class="absolute top-0 left-0 w-full h-4 z-20" style="background:${G}"></div>
+    <div class="diagonal-strip opacity-50"></div>
+    <div class="pt-10 px-12 pb-2 flex flex-col z-10 relative">
+      ${s.label ? `<span class="text-gray-400 font-bold text-xl tracking-wide mb-2">${s.label}</span>` : ''}
+      <h1 class="text-5xl font-black tracking-tight leading-none" style="color:${D}">
+        ${s.titleUnderline
+          ? s.title.replace(s.titleUnderline,
+              `<span class="border-b-8 inline-block pb-1 mt-2" style="border-color:${G}">${s.titleUnderline}</span>`)
+          : s.title}
+      </h1>
+    </div>
+    <div class="flex-1 flex flex-col px-12 pb-12 pt-6 justify-between relative z-10">
+      <div class="flex-1 flex items-center justify-center">
+        <div class="flex flex-col items-center text-center">
+          <div class="mb-6 relative">
+            <i class="fas ${s.icon} text-8xl z-10 relative" style="color:${D}"></i>
+            ${s.badgeIcon ? `<div class="absolute -top-4 -right-4" style="color:${badgeColor}">
+              <i class="fas ${s.badgeIcon} text-6xl"></i>
+            </div>` : ''}
+          </div>
+          <p class="text-6xl font-black leading-tight mb-4">${s.message.replace(/\n/g,'<br>')}</p>
+        </div>
+      </div>
+      <div class="rounded-3xl p-8 shadow-2xl mt-4" style="background:${D}">
+        <div class="flex items-center justify-between gap-8">
+          <div class="flex-1 grid grid-cols-${itemCols} gap-4 border-r-2 border-gray-700 pr-8">${items}</div>
+          <div class="${itemCols===2?'flex-shrink-0':'flex-1'} pl-4">
+            <div class="flex items-center gap-4">
+              <i class="fas ${p.conclusion.icon} text-5xl" style="color:${G}"></i>
+              <div>
+                <p class="text-lg font-bold mb-0" style="color:${G}">${p.conclusion.prefix}</p>
+                <p class="text-4xl font-black tracking-wide" style="color:${G}">${p.conclusion.main}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-3 z-20" style="background:${D}"></div>
+  </div>`;
+}
+
+function renderClosing(s) {
+  const cards = s.cards.map(c => `
+    <div class="rounded-2xl p-6 border-t-8" style="background:#f9fafb;border-color:${G}">
+      <p class="text-3xl font-black mb-2" style="color:${D}">${c.title}</p>
+      <p class="text-xl text-gray-500">${c.desc}</p>
+    </div>`).join('');
+
+  return `
+  <div class="slide-container">
+    <div class="absolute top-0 left-0 w-full h-5" style="background:${G}"></div>
+    <div class="absolute bottom-0 left-0 w-full h-5" style="background:${D}"></div>
+    <div class="flex-1 flex flex-col justify-center items-center px-16 z-10 text-center">
+      <div class="mb-8 rounded-full w-32 h-32 flex items-center justify-center shadow-2xl" style="background:${D}">
+        <i class="fas ${s.icon} text-6xl" style="color:${G}"></i>
+      </div>
+      <h1 class="text-7xl font-black leading-tight mb-8" style="color:${D}">${s.title.replace(/\n/g,'<br>')}</h1>
+      <div class="grid grid-cols-${s.cards.length} gap-6 w-full">${cards}</div>
+    </div>
+  </div>`;
+}
+
+function renderSlide(s) {
+  switch (s.type) {
+    case 'title':         return renderTitle(s);
+    case 'three-cards':   return renderThreeCards(s);
+    case 'three-tactics': return renderThreeTactics(s);
+    case 'two-columns':   return renderTwoColumns(s);
+    case 'steps':         return renderSteps(s);
+    case 'big-message':   return renderBigMessage(s);
+    case 'closing':       return renderClosing(s);
+    default: return `<div class="slide-container flex items-center justify-center">
+      <p class="text-4xl font-black text-gray-400">Unknown type: ${s.type}</p></div>`;
+  }
+}
+
+// DOMContentLoaded 後に描画
+document.addEventListener('DOMContentLoaded', () => {
+  // ?slide=N で特定スライドのみ表示（スクリーンショット用）
+  const params = new URLSearchParams(location.search);
+  const slideParam = params.get('slide');
+  const screenshotMode = slideParam !== null;
+
+  const stage = document.getElementById('stage');
+
+  if (screenshotMode) {
+    // スクリーンショットモード: 指定スライドを1枚だけ表示、ナビなし
+    const idx = Math.max(0, Math.min(parseInt(slideParam) - 1, SLIDE_SCRIPT.length - 1));
+    document.body.style.background = '#f3f4f6';
+    const div = document.createElement('div');
+    div.className = 'slide active';
+    div.innerHTML = renderSlide(SLIDE_SCRIPT[idx]);
+    stage.appendChild(div);
+    document.getElementById('nav').style.display = 'none';
+  } else {
+    // 通常モード: 全スライド表示
+    SLIDE_SCRIPT.forEach((s, i) => {
+      const div = document.createElement('div');
+      div.className = 'slide' + (i === 0 ? ' active' : '');
+      div.innerHTML = renderSlide(s);
+      stage.appendChild(div);
+    });
+    document.getElementById('counter').textContent = `1 / ${SLIDE_SCRIPT.length}`;
+  }
+});
+
+let current = 0;
+function changeSlide(dir) {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  slides[current].classList.remove('active');
+  current = Math.max(0, Math.min(total - 1, current + dir));
+  slides[current].classList.add('active');
+  document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+  document.getElementById('btn-prev').disabled = current === 0;
+  document.getElementById('btn-next').disabled = current === total - 1;
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   changeSlide(-1);
+});
+</script>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e5e7eb;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    user-select: none;
+  }
+  #stage { position: relative; width: 1280px; height: 720px; }
+  .slide { display: none; width: 1280px; height: 720px; }
+  .slide.active { display: block; }
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: #fff; position: relative;
+    overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+  }
+  .bg-split { background: #f3f4f6; }
+  .bg-split::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 50%; height: 100%;
+    background: #f9fafb; z-index: 0;
+  }
+  .highlight-marker { position: relative; display: inline-block; }
+  .highlight-marker::after {
+    content: ''; position: absolute;
+    bottom: 5px; left: 0; width: 100%; height: 35%;
+    background: #CCFF00; z-index: -1;
+  }
+  .card-shadow { box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05); }
+  .diagonal-strip {
+    position: absolute; top: 0; right: 0; width: 300px; height: 100%;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px,
+      rgba(204,255,0,.05) 20px, rgba(204,255,0,.05) 40px);
+    pointer-events: none;
+  }
+  #nav {
+    display: flex; align-items: center; gap: 24px;
+    margin-top: 20px; color: #555;
+    font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700;
+  }
+  #nav button {
+    background: #121212; color: #CCFF00;
+    border: none; border-radius: 6px;
+    padding: 10px 28px; font-size: 18px;
+    font-family: inherit; font-weight: 700; cursor: pointer;
+  }
+  #nav button:hover { background: #333; }
+  #nav button:disabled { background: #ccc; color: #999; cursor: default; }
+  #counter { font-size: 18px; min-width: 90px; text-align: center; }
+</style>
+
+<div id="stage"></div>
+<div id="nav">
+  <button id="btn-prev" onclick="changeSlide(-1)" disabled>← 前へ</button>
+  <span id="counter">- / -</span>
+  <button id="btn-next" onclick="changeSlide(1)">次へ →</button>
+</div>
+
+</body>
+</html>
