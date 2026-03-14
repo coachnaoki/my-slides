@@ -30,164 +30,138 @@ const SLIDE_SCRIPT = [
   // ---- スライド 1 ----
   {
     type: "title",
-    icon: "fa-baseball-ball",       // FontAwesome アイコン名
-    title: "ダブルスを支配する",     // メインタイトル（改行は \n）
-    titleSuffix: "25の鉄則",        // タイトル末尾（マーカーなし）
-    titleHighlight: "支配する",     // この文字列の下にマーカー
-    subtitle: "センターを制し、ペアで勝つ"
+    icon: "fa-brain",
+    title: "メンタルを支配し、",
+    titleHighlight: "試合を制す",
+    subtitle: "技術だけでは勝てない、テニスの真実"
   },
 
   // ---- スライド 2 ----
   {
-    type: "three-cards",
-    concept: "コンセプト1",
-    title: "センターウィンドウを制覇せよ！",
-    titleHighlight: "センターウィンドウ",  // この文字列に黄緑bg
-    cards: [
-      {
-        icon: "fa-expand",
-        title: "見えない窓",
-        lines: [
-          "幅 <span class='text-5xl dark-black-text'>2.7m</span>",
-          "<span class='text-2xl'>×</span>",
-          "高さ <span class='text-5xl dark-black-text'>91cm</span>"
-        ]
-      },
-      {
-        icon: "fa-hourglass-half",
-        title: "砂時計の形",
-        lines: [
-          "コートの",
-          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>ド真ん中</span>が",
-          "一番重要！"
-        ]
-      },
-      {
-        icon: "fa-exchange-alt",
-        title: "交通量No.1",
-        lines: [
-          "すべての",
-          "ショットが",
-          "<span class='text-4xl dark-black-text'>ここを通る！</span>"
-        ]
-      }
-    ]
+    type: "big-message",
+    label: "MENTAL GAME",
+    title: "お前は「2つの試合」をしている",
+    titleUnderline: "「2つの試合」",
+    icon: "fa-brain",
+    badgeIcon: "fa-exclamation",
+    message: "勝敗を分けるのは、\nどちらの試合を\n<span class='px-4 mx-2 inline-block shadow-sm' style='background:#CCFF00'>制する</span>かだ",
+    panel: {
+      items: [
+        { icon: "fa-times-circle",  label: "試合は「1つ」じゃない" },
+        { icon: "fa-copy",          label: "同時に2つを戦っている" },
+        { icon: "fa-trophy",        label: "どちらを制するかが勝負" }
+      ],
+      conclusion: { icon: "fa-flag-checkered", prefix: "勘違いするな。", main: "お前は2つ戦っている！" }
+    }
   },
 
   // ---- スライド 3 ----
   {
-    type: "three-tactics",
-    concept: "コンセプト1",
-    title: "どう支配するか？",
-    titleHighlight: "支配",          // マーカーを引くテキスト
-    catchphrase: "攻めはセンターへ。守りは変化を。",
-    cards: [
-      { role: "前衛",      icon: "fa-bolt",   dark: false, main: "積極的に\nポーチ！",  sub: "ここで捕らえる" },
-      { role: "後衛",      icon: "fa-meteor", dark: false, main: "低く\n叩き込め！",  sub: "攻撃的なボール" },
-      { role: "支配されたら", icon: "fa-random", dark: true,  main: "意識を\n散らせ！", sub: "ストレート・ロブ\nショートクロス" }
+    type: "steps",
+    title: "第1の試合",
+    titleUnderline: "第1の試合",
+    catchphrase: "ポイント中（プレー中）",
+    steps: [
+      {
+        label: "技術の見せ場",
+        icon: "fa-baseball-ball",
+        style: "green",
+        content: "何千時間も練習してきた<span class='px-2' style='background:#CCFF00'>技術</span>を発揮する場所",
+        num: "01"
+      },
+      {
+        label: "重要だが最重要ではない",
+        icon: "fa-info-circle",
+        style: "gray",
+        content: "重要だ。だが、実は「最重要」ではない",
+        num: "02"
+      },
+      {
+        label: "「2回目」の実行の場所",
+        icon: "fa-redo",
+        style: "highlight",
+        content: "頭の中で描いたことを「2回目」に実行する場所にすぎない",
+        num: "03"
+      }
     ]
   },
 
   // ---- スライド 4 ----
   {
-    type: "three-cards",
-    concept: "コンセプト2",
-    title: "ポジショニングの基本",
-    titleHighlight: "ポジショニング",
-    cards: [
+    type: "steps",
+    title: "第2の試合",
+    titleUnderline: "第2の試合",
+    catchphrase: "ポイント間（25秒）",
+    steps: [
       {
-        icon: "fa-map-marker-alt",
-        title: "基本原則",
-        lines: [
-          "試合は",
-          "<span class='text-5xl dark-black-text border-b-8' style='border-color:#CCFF00'>立つ場所</span>で",
-          "決まる！"
-        ]
+        label: "誰も練習しない最重要パート",
+        icon: "fa-brain",
+        style: "green",
+        content: "思考と感情の側面に焦点を当てる時間。間違いなく<span class='px-2' style='background:#CCFF00'>「最重要」</span>だ",
+        num: "01"
       },
       {
-        icon: "fa-running",
-        title: "サーバー",
-        lines: [
-          "少し",
-          "<span class='text-5xl dark-black-text'>外側へ</span>",
-          "<span class='text-xl text-gray-500'>パートナーの守備範囲を考慮</span>"
-        ]
+        label: "25秒を最大限に使え",
+        icon: "fa-clock",
+        style: "green",
+        content: "ポイント間の「25秒」で戦略を立てろ",
+        num: "02"
       },
       {
-        icon: "fa-crosshairs",
-        title: "パートナー",
-        lines: [
-          "サービスBOXの",
-          "<span class='text-5xl dark-black-text'>ど真ん中</span>",
-          "<span class='text-xl text-gray-500'>アレーとセンターの両取り</span>"
-        ]
+        label: "相手の裏をかけ",
+        icon: "fa-chess",
+        style: "highlight",
+        content: "戦略を立て、相手を出し抜け！",
+        num: "03"
       }
     ]
   },
 
   // ---- スライド 5 ----
   {
-    type: "three-cards",
-    concept: "コンセプト2",
-    title: "ラリー中の連動",
-    titleHighlight: "ラリー中",
-    cards: [
-      {
-        icon: "fa-link",
-        title: "輪ゴムの法則",
-        lines: [
-          "二人は見えない",
-          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>輪ゴム</span>で",
-          "繋がっている！"
-        ]
-      },
-      {
-        icon: "fa-map-marker-alt",
-        title: "追い出されたら",
-        lines: [
-          "空いた",
-          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>スペース</span>を",
-          "カバーする"
-        ]
-      },
-      {
-        icon: "fa-arrows-alt",
-        title: "常に場所を把握",
-        lines: [
-          "雁行陣だけでなく",
-          "<span class='text-5xl dark-black-text border-b-4' style='border-color:#CCFF00'>平行陣でも</span>",
-          "一緒に動く！"
-        ]
-      }
-    ]
+    type: "big-message",
+    label: "WARNING",
+    title: "ポイント間が「弱点」になっていないか？",
+    titleUnderline: "「弱点」",
+    icon: "fa-exclamation-triangle",
+    badgeIcon: "fa-skull",
+    badgeIconColor: "red",
+    message: "思考を失敗しておいて、\nプレーの<span class='px-4 mx-2 inline-block transform -rotate-2 shadow-sm' style='background:#CCFF00'>成功を期待するのは不可能</span>だ",
+    panel: {
+      items: [
+        { icon: "fa-heart-broken",        label: "メンタル・感情がボロボロ" },
+        { icon: "fa-times",               label: "思考の失敗" },
+        { icon: "fa-map-signs",           label: "プランも<br>分析もなし" }
+      ],
+      conclusion: { icon: "fa-ban", prefix: "戦いは常に不利になるぞ。", main: "今すぐ変えろ！" }
+    }
   },
 
   // ---- スライド 6 ----
   {
     type: "two-columns",
-    concept: "コンセプト3",
-    title: "「コートの線」は忘れよう",
-    titleHighlight: "忘れよう",
-    catchphrase: "「左右」ではなく「前後」！",
+    title: "ポイント間を「最大の武器」にしろ",
+    titleHighlight: "最大の武器",
+    catchphrase: "技術より絶対に強い！",
     columns: [
       {
-        badge: "前衛",
-        badgeColor: "green",   // "green" | "dark" | "white"
-        borderColor: "green",  // "green" | "dark"
-        icon: "fa-hand-rock",
-        main: "ネット前\n全支配",
+        badge: "頭脳",
+        badgeColor: "green",
+        borderColor: "green",
+        icon: "fa-brain",
+        main: "賢く\n考えろ",
         dividerColor: "green",
-        sub: "パートナーの前の\nボールも奪う！",
-        subColor: "gray"       // "gray" | "dark"
+        sub: "プレッシャーの中で\n相手より賢く思考する",
+        subColor: "gray"
       },
       {
-        badge: "後衛",
-        badgeColor: "white",
+        badge: "ハート",
+        badgeColor: "dark",
         borderColor: "dark",
-        icon: "fa-map-marked-alt",
-        main: "コート後方\n広くカバー",
+        icon: "fa-heartbeat",
+        main: "感情を\n制御しろ",
         dividerColor: "dark",
-        sub: "前衛が決めるための\nお膳立て！",
+        sub: "互角の戦いで\n最大の差を生む力",
         subColor: "gray"
       }
     ]
@@ -195,166 +169,32 @@ const SLIDE_SCRIPT = [
 
   // ---- スライド 7 ----
   {
-    type: "steps",
-    title: "ロブの処理と優先順位",
-    titleUnderline: "前衛が最優先",
-    catchphrase: "前衛の動きを歓迎せよ",
-    steps: [
-      {
-        label: "CASE 1: 浅いロブ",
-        icon: "fa-hand-paper",
-        style: "green",   // "green"=黄緑枠・通常 | "gray"=グレー・dim | "highlight"=黄緑bg
-        content: "<span class='px-2 mr-2 font-black' style='background:#CCFF00'>前衛</span>が処理！",
-        num: "01"
-      },
-      {
-        label: "CASE 2: 深いロブ",
-        icon: "fa-running",
-        style: "gray",
-        content: "<span class='border-b-4 border-gray-300'>後衛</span>がカバー",
-        num: "02"
-      },
-      {
-        label: "MINDSET",
-        icon: "fa-gavel",
-        style: "highlight",
-        content: "前衛が触る ＝ <span class='px-2' style='background:#121212;color:#CCFF00'>攻撃</span>",
-        num: "03"
-      }
-    ]
+    type: "big-message",
+    label: "RAFA ／ 2008 Wimbledon Final",
+    title: "頭の中の疑念を黙らせろ",
+    titleUnderline: "疑念を黙らせろ",
+    icon: "fa-quote-left",
+    badgeIcon: "fa-star",
+    message: "疑念や恐怖、過剰な期待を\n相手より上手く<span class='px-4 mx-2 inline-block shadow-sm' style='background:#CCFF00'>沈黙させれば勝てる</span>",
+    panel: {
+      items: [
+        { icon: "fa-user-secret", label: "ある種の自己催眠" },
+        { icon: "fa-mask",        label: "弱点を自分からも隠す" },
+        { icon: "fa-fire",        label: "死ぬほど真剣な<br>ゲーム" }
+      ],
+      conclusion: { icon: "fa-medal", prefix: "ナダルの言葉：", main: "これが勝者の思考だ" }
+    }
   },
 
   // ---- スライド 8 ----
   {
-    type: "big-message",
-    label: "READ THE BODY",
-    title: "ボールではなく「相手の体勢」を見よ",
-    titleUnderline: "「相手の体勢」",
-    icon: "fa-eye",
-    badgeIcon: "fa-certificate",
-    message: "ボールの行方は、\n相手の<span class='px-4 mx-2 inline-block transform -rotate-2 shadow-sm' style='background:#CCFF00'>「体」</span>に書いてある。",
-    panel: {
-      items: [
-        { icon: "fa-balance-scale",    label: "バランス" },
-        { icon: "fa-arrows-alt-h",     label: "ボールとの距離" },
-        { icon: "fa-drafting-compass", label: "ラケット角度" }
-      ],
-      conclusion: { icon: "fa-ban", prefix: "ボールを追うな。", main: "相手を読め！" }
-    }
-  },
-
-  // ---- スライド 9 ----
-  {
-    type: "two-columns",
-    concept: "コンセプト4",
-    title: "二つの判断基準",
-    titleHighlight: "判断基準",
-    catchphrase: "相手が「楽」か「苦」か？",
-    columns: [
-      {
-        badge: "楽な体勢",
-        badgeColor: "white",
-        borderColor: "green",
-        icon: "fa-couch",
-        main: "動かずに\n待て！",
-        dividerColor: "green",
-        sub: "コースが絞れない",
-        subColor: "gray"
-      },
-      {
-        badge: "苦しい体勢",
-        badgeColor: "white",
-        borderColor: "dark",
-        icon: "fa-bullseye",
-        main: "センターで\n待ち伏せ！",
-        dividerColor: "dark",
-        sub: "相手は真ん中にしか\n打てない！",
-        subColor: "dark"
-      }
-    ]
-  },
-
-  // ---- スライド 10 ----
-  {
-    type: "big-message",
-    label: "DON'T CHANGE DIRECTION",
-    title: "方向を変えるな！",
-    titleUnderline: "変えるな！",
-    icon: "fa-arrows-alt-h",
-    badgeIcon: "fa-times",
-    badgeIconColor: "red",   // "green" | "red"
-    message: "むやみに\n<span class='px-4 mx-2 inline-block shadow-sm' style='background:#CCFF00'>クロスからストレート</span>\nに打たない。",
-    panel: {
-      items: [
-        { icon: "fa-exclamation-triangle", label: "大穴が空く",  sub: "自分たちのコートが危険に" },
-        { icon: "fa-angle-double-right",   label: "相手有利",   sub: "角度をつけさせてしまう" }
-      ],
-      conclusion: { icon: "fa-shield-alt", prefix: "基本はクロス！", main: "リスクを冒すな！" },
-      itemCols: 2   // 2 or 3
-    }
-  },
-
-  // ---- スライド 11 ----
-  {
-    type: "two-columns",
-    concept: "コンセプト5",
-    title: "鉄則 と 例外",
-    titleHighlight: "例外",
-    catchphrase: "基本はクロスラリー",
-    columns: [
-      {
-        badge: "鉄則",
-        badgeColor: "green",
-        borderColor: "green",
-        icon: "fa-exchange-alt",
-        iconStyle: "rotate-45",
-        main: "基本は\nクロス",
-        dividerColor: "green",
-        sub: "意図的な戦略以外は\nクロスを続けろ",
-        subColor: "gray"
-      },
-      {
-        badge: "例外",
-        badgeColor: "dark",
-        borderColor: "dark",
-        icon: "fa-bolt",
-        main: "変えるのは\n圧倒的有利な時",
-        mainSize: "text-5xl",  // オプション: デフォルトは text-6xl
-        dividerColor: "dark",
-        sub: "仕留められる時だけ\nストレートへ",
-        subColor: "gray"
-      }
-    ]
-  },
-
-  // ---- スライド 12 ----
-  {
-    type: "big-message",
-    label: "IGNORE THE ALLEY",
-    title: "アレーは捨てろ！",
-    titleUnderline: "捨てろ！",
-    icon: "fa-ban",
-    badgeIcon: "fa-running",
-    message: "ストレートを抜かれることを\n<span class='px-4 mx-2 inline-block transform -rotate-2 shadow-sm' style='background:#CCFF00'>恐れるな。</span>",
-    panel: {
-      items: [
-        { icon: "fa-dice",      label: "確率のゲーム" },
-        { icon: "fa-chart-pie", label: "10回中2回" },
-        { icon: "fa-door-open", label: "センター危機" }
-      ],
-      conclusion: { icon: "fa-exclamation-triangle", prefix: "アレーを守ると...", main: "センターが空く！" }
-    }
-  },
-
-  // ---- スライド 13 ----
-  {
     type: "closing",
-    icon: "fa-trophy",
-    title: "センターを制し、\nペアで勝つ",
+    icon: "fa-fist-raised",
+    title: "ポイント間で\n相手を上回れ",
     cards: [
-      { title: "センター支配", desc: "全ショットの通り道を押さえる" },
-      { title: "ペアの連動",   desc: "輪ゴムで繋がった動きを意識" },
-      { title: "基本はクロス", desc: "確率のゲームで有利を保つ" }
+      { title: "メンタルを強く",   desc: "頭をクリアにし、<br>相手とプランに集中しろ" },
+      { title: "感情を強く",       desc: "逆境に対処する<br>準備をしておけ" },
+      { title: "THE TIME",         desc: "ポイント間こそ<br>試合の最重要時間だ！" }
     ]
   }
 
@@ -390,9 +230,9 @@ function renderTitle(s) {
       <h1 class="text-7xl font-black leading-tight mb-2 tracking-wide" style="color:${D}">
         ${s.title.replace(/\n/g,'<br>')}
       </h1>
-      ${s.titleSuffix ? `<h1 class="text-7xl font-black leading-tight mb-8 tracking-wide" style="color:${D}">
+      ${(s.titleSuffix || s.titleHighlight) ? `<h1 class="text-7xl font-black leading-tight mb-8 tracking-wide" style="color:${D}">
         <span style="position:relative;z-index:1">${s.titleHighlight||''}<span style="position:absolute;bottom:5px;left:-5px;right:-5px;height:35%;background:${G};z-index:-1;transform:rotate(-1deg);display:block"></span></span>
-        ${s.titleSuffix}
+        ${s.titleSuffix||''}
       </h1>` : ''}
       ${s.subtitle ? `<div class="px-10 py-6 rounded-xl border-l-8" style="background:#f0f0f0;border-color:${G}">
         <p class="text-4xl font-bold text-center" style="color:${D}">${s.subtitle}</p>
@@ -530,7 +370,7 @@ function renderTwoColumns(s) {
             : s.title}
         </h1>
         ${s.catchphrase ? `<div class="px-8 py-3 rounded-lg transform rotate-2 shadow-lg border-2 border-gray-900">
-          <p class="text-3xl font-black" style="color:${D}">${s.catchphrase}</p>
+          <p class="text-xl font-black whitespace-nowrap" style="color:${D}">${s.catchphrase}</p>
         </div>` : ''}
       </div>
     </div>
@@ -554,7 +394,7 @@ function renderSteps(s) {
       <div class="flex-shrink-0 w-24 h-24 rounded-full flex items-center justify-center mr-8" style="${st.iconWrap}">
         <i class="fas ${step.icon} text-5xl" style="color:${st.iconColor}"></i>
       </div>
-      <div class="flex-1">
+      <div class="flex-1 pr-32">
         <span class="text-2xl font-bold mr-4" style="color:${st.textColor};opacity:.7">${step.label}</span>
         <p class="text-5xl font-black" style="color:${st.textColor}">${step.content}</p>
       </div>
