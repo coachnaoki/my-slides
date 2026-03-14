@@ -44,7 +44,7 @@ const SLIDE_SCRIPT = [
     titleUnderline: "「2つの試合」",
     icon: "fa-brain",
     badgeIcon: "fa-exclamation",
-    message: "勝敗を分けるのは、\nどちらの試合を\n<span class='px-4 mx-2 inline-block shadow-sm' style='background:#CCFF00'>制する</span>かだ",
+    message: "勝敗を分けるのは\nどちらの試合を<span class='px-4 mx-2 inline-block shadow-sm' style='background:#CCFF00'>制する</span>かだ",
     panel: {
       items: [
         { icon: "fa-times-circle",  label: "試合は「1つ」じゃない" },
@@ -126,7 +126,7 @@ const SLIDE_SCRIPT = [
     icon: "fa-exclamation-triangle",
     badgeIcon: "fa-skull",
     badgeIconColor: "red",
-    message: "思考を失敗しておいて、\nプレーの<span class='px-4 mx-2 inline-block transform -rotate-2 shadow-sm' style='background:#CCFF00'>成功を期待するのは</span><br>不可能だ",
+    message: "思考を失敗しておいて\nプレーの<span class='px-4 mx-2 inline-block transform -rotate-2 shadow-sm' style='background:#CCFF00'>成功を期待するのは不可能</span>だ",
     panel: {
       items: [
         { icon: "fa-heart-broken",        label: "メンタル・感情がボロボロ" },
@@ -192,7 +192,7 @@ const SLIDE_SCRIPT = [
     icon: "fa-fist-raised",
     title: "ポイント間で\n相手を上回れ",
     cards: [
-      { title: "メンタルを強く",   desc: "頭をクリアにし、<br>相手とプランに集中しろ" },
+      { title: "メンタルを強く",   desc: "頭をクリアにし<br>相手とプランに集中しろ" },
       { title: "感情を強く",       desc: "逆境に対処する<br>準備をしておけ" },
       { title: "THE TIME",         desc: "ポイント間こそ<br>試合の最重要時間だ！" }
     ]
@@ -382,7 +382,7 @@ function renderTwoColumns(s) {
 function renderSteps(s) {
   function stepStyle(step) {
     if (step.style === 'green')     return { wrap:`background:#f9fafb;border-left:8px solid ${G}`, iconWrap:`background:#fff;border:4px solid ${G}`, iconColor:D, textColor:D, numColor:'#e5e7eb' };
-    if (step.style === 'gray')      return { wrap:`background:#fff;border-left:8px solid #d1d5db;opacity:.8`, iconWrap:`background:#f3f4f6;border:4px solid #d1d5db`, iconColor:'#9ca3af', textColor:'#6b7280', numColor:'#f3f4f6' };
+    if (step.style === 'gray')      return { wrap:`background:#f0f0f0;border-left:8px solid #9ca3af`, iconWrap:`background:#e5e7eb;border:4px solid #9ca3af`, iconColor:'#6b7280', textColor:'#6b7280', numColor:'#d1d5db' };
     if (step.style === 'highlight') return { wrap:`background:${G};border-left:8px solid ${D}`, iconWrap:`background:${D}`, iconColor:G, textColor:D, numColor:`${D}`, numOpacity:'opacity:.2' };
     return {};
   }
